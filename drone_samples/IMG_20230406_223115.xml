@@ -1,0 +1,26 @@
+<annotation>
+	<folder>drone</folder>
+	<filename>IMG_20230406_223115.jpg</filename>
+	<path>C:\Users\thana\OneDrive\Desktop\drone\IMG_20230406_223115.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3000</width>
+		<height>4000</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>drone</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>41</xmin>
+			<ymin>1094</ymin>
+			<xmax>2872</xmax>
+			<ymax>3731</ymax>
+		</bndbox>
+	</object>
+</annotation>
