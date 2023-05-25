@@ -11,6 +11,7 @@
 '''                         
 '''
 ###################################################################################################################
+
 import sys
 import serial
 import time
@@ -23,14 +24,26 @@ if __name__ == '__main__':
 
     #init gimbal try, problem with import serial  (import serial ModuleNotFoundError: No module named 'serial')
 
-    ser = serial.Serial('COM4', 9600, timeout=1)  # Replace 'COM1' with the appropriate port and 9600 with the correct baud rate
-    frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
-    ser.write(frame)  # Send the command frame over the serial connection
-    time.sleep(0.1)  # Wait for the command to be sent
+    ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
 
 
+    # time.sleep(0.1)  # Wait for the command to be sent
+    while(True):
 
+        frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
+        ser.write(frame)  # Send the command frame over the serial connection
+        time.sleep(0.9)
+        ser.flush()
+        #time.sleep(0.1)  # Wait for the command to be sent
+
+        frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
+        ser.write(frame)  # Send the command frame over the serial connection
+        time.sleep(0.9)  # Wait for the command to be sent
+        ser.flush()
     
+
+
+
     #Some examples for Pelco-P frames testing
 
     '''

@@ -21,9 +21,9 @@
 ###################################################################################################################
 
 
-
-
 import time
+
+
 TILT_DEG_TIME = 190000 #Tilt time for one degree
 PAN_DEG_TIME = 114000 #Pan time for one degree
 
@@ -36,18 +36,28 @@ def _delay_us(us):
 
 def stop():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAF, 0x0F)
+    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    time.sleep(0.1)  # Wait for the command to be sent
 
 def down():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
+    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    time.sleep(0.1)  # Wait for the command to be sent
 
 def up():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
+    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    time.sleep(0.1)  # Wait for the command to be sent
 
 def left():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
+    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    time.sleep(0.1)  # Wait for the command to be sent
 
 def right():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x02, 0x20, 0x00, 0xAF, 0x2D)
+    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    time.sleep(0.1)  # Wait for the command to be sent
 
 def zoom_wide():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x20, 0x00, 0x20, 0xAF, 0x0F)
