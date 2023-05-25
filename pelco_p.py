@@ -28,7 +28,7 @@ TILT_DEG_TIME = 190000 #Tilt time for one degree
 PAN_DEG_TIME = 114000 #Pan time for one degree
 
 #Basic Functions
-#The basic Pelco-D frames for pan/tilt and fo+/fo-,zo+/zo-
+#The basic Pelco-P frames for pan/tilt and fo+/fo-,zo+/zo-
 
 
 def _delay_us(us):
