@@ -12,9 +12,8 @@ Thesis Committee:
 
 *A thesis submitted in fulfillment of the requirements for the Diploma of Electrical and Computer Engineering in the [Microprocessor and Hardware Lab][mhlPage] of [School of Electrical and Computer Engineering][ecePage]*
 
-## Abstract
 
-### Technologies used:
+Technologies used: RPi4, PiCamera, AS20-RS485 Gimbal, Tensorflow, Geany IDE, Sublime Text Editor, PyCharm
 
 
 
