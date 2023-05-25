@@ -12,7 +12,7 @@
 '''
 ###################################################################################################################
 
-#import serial
+import serial
 import time
 import pelco_p
 #import pelco_d     #Uncomment if you want to use Pelco-D
@@ -20,6 +20,16 @@ import pelco_p
 
 
 if __name__ == '__main__':
+
+    #init gimbal try, problem with import serial  (import serial ModuleNotFoundError: No module named 'serial')
+    '''
+    ser = pyserial.Serial('COM4', 9600, timeout=1)  # Replace 'COM1' with the appropriate port and 9600 with the correct baud rate
+    frame = (0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAF, 0x0F)
+    ser.write(frame)  # Send the command frame over the serial connection
+    time.sleep(0.1)  # Wait for the command to be sent
+    '''
+
+
     
     #Some examples for Pelco-P frames testing
 
