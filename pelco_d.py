@@ -46,7 +46,7 @@ def left():
 
 def right():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x02, 0x20, 0x00, 0x23)
- 0x
+ 
 def zoom_wide():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x20, 0x00, 0x00, 0x21) 
 
@@ -116,6 +116,7 @@ def right_deg(deg):
 
 
 
+'''
 
 # Main program
 if __name__ == '__main__':
@@ -124,3 +125,5 @@ if __name__ == '__main__':
     up_deg(42)
     left_deg(21)
     down_deg(15)
+
+'''

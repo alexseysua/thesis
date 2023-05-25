@@ -118,6 +118,7 @@ def right_deg(deg):
 
 
 
+'''
 
 # Main program
 if __name__ == '__main__':
@@ -126,3 +127,5 @@ if __name__ == '__main__':
     up_deg(42)
     left_deg(21)
     down_deg(15)
+
+'''
