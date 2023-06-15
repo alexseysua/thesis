@@ -13,20 +13,61 @@
 ###################################################################################################################
 
 import sys
-import serial
+#import serial
 import time
 import pelco_p
 #import pelco_d     #Uncomment if you want to use Pelco-D
 
+# Gimbal Modes
+def gimbal_mode1():
+    print('Selected Mode: Vertical Scan')
+
+def gimbal_mode2():
+    print('Selected Mode: Horizontal Scan')
+
+def gimbal_mode3():
+    print('Selected Mode: Tracking')
+
+def gimbal_mode4():
+    print('Selected Mode: Idle')
+
+# Gimbal Mode Menu for user selection
+def gimbal_mode_selection_menu():
+    print_menu()
+    input_mode = input()
+
+    match input_mode:
+        case "1":
+            gimbal_mode1()
+
+        case "2":
+            gimbal_mode2()
+
+        case "3":
+            gimbal_mode3()
+
+        case "4":
+            gimbal_mode4()
+
+# Gimbal Menu
+def print_menu():
+    print('Select Mode:')
+    print('1: Vertical Scan')
+    print('2: Horizontal Scan')
+    print('3: Tracking')
+    print('4: Idle')
 
 
 if __name__ == '__main__':
 
     #init gimbal try, problem with import serial  (import serial ModuleNotFoundError: No module named 'serial')
 
-    ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
+    #ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
 
+    gimbal_mode_selection_menu()
+    pelco_p.right()
 
+'''
     # time.sleep(0.1)  # Wait for the command to be sent
     while(True):
 
@@ -41,23 +82,4 @@ if __name__ == '__main__':
         time.sleep(0.9)  # Wait for the command to be sent
         ser.flush()
     
-
-
-
-    #Some examples for Pelco-P frames testing
-
-    '''
-    pelco_p.right_deg(30)
-    pelco_p.left_deg(45)
-    pelco_p.up_deg(42)
-    pelco_p.down_deg(15)
-    '''
-
-    #Some examples for Pelco-D frames testing
-
-    '''
-    pelco_d.right_deg(30)
-    pelco_d.left_deg(45)
-    pelco_d.up_deg(42)
-    pelco_d.down_deg(15)
-    '''
+'''

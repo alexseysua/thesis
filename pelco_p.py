@@ -36,40 +36,67 @@ def _delay_us(us):
 
 def stop():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAF, 0x0F)
-    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
-    time.sleep(0.1)  # Wait for the command to be sent
+   # ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    #time.sleep(0.1)  # Wait for the command to be sent
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def down():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
-    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
-    time.sleep(0.1)  # Wait for the command to be sent
+    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    #time.sleep(0.1)  # Wait for the command to be sent
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def up():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
-    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
-    time.sleep(0.1)  # Wait for the command to be sent
+    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    #time.sleep(0.1)  # Wait for the command to be sent
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def left():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
-    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
-    time.sleep(0.1)  # Wait for the command to be sent
+    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    #time.sleep(0.1)  # Wait for the command to be sent
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def right():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x02, 0x20, 0x00, 0xAF, 0x2D)
-    ser.write(pelco_d_frame)  # Send the command frame over the serial connection
-    time.sleep(0.1)  # Wait for the command to be sent
+    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    #time.sleep(0.1)  # Wait for the command to be sent
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def zoom_wide():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x20, 0x00, 0x20, 0xAF, 0x0F)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def zoom_tele():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x40, 0x00, 0x20, 0xAF, 0x6F)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def focus_near():
     pelco_d_frame = (0xA0, 0x00, 0x01, 0x00, 0x00, 0x00, 0xAF, 0x0E)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def focus_far():
     pelco_d_frame = (0xA0, 0x00, 0x02, 0x00, 0x00, 0x00, 0xAF, 0x0D)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 
 #Degree Functions
@@ -128,14 +155,18 @@ def right_deg(deg):
 
 
 
-'''
 
+'''
 # Main program
 if __name__ == '__main__':
     
-    right_deg(45)
-    up_deg(42)
-    left_deg(21)
-    down_deg(15)
+    left()
+    right()
+    up()
+    down()
+    zoom_wide()
+    zoom_tele()
+    focus_near()
+    focus_far()
 
 '''

@@ -19,11 +19,9 @@
 ###################################################################################################################
 
 
-
-
 import time
-TILT_DEG_TIME = 190000 #Tilt time for one degree
-PAN_DEG_TIME = 114000 #Pan time for one degree
+
+
 
 #Basic Functions
 #The basic Pelco-D frames for pan/tilt and fo+/fo-,zo+/zo-
@@ -34,31 +32,54 @@ def _delay_us(us):
 
 def stop():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def down():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x10, 0x00, 0x20, 0x31)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def up():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x08, 0x00, 0x20, 0x29) 
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def left():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x04, 0x20, 0x00, 0x25)
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def right():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x02, 0x20, 0x00, 0x23)
- 
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 def zoom_wide():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x20, 0x00, 0x00, 0x21) 
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 def zoom_tele():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x40, 0x00, 0x00, 0x41)
-
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 def focus_near():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x80, 0x00, 0x00, 0x81)
-
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 def focus_far():
     pelco_d_frame = (0xFF, 0x01, 0x01, 0x00, 0x00, 0x00, 0x02)
-
+    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_string = " ".join(hex_list)
+    print(hex_string)
 
 #Degree Functions
 
@@ -116,14 +137,14 @@ def right_deg(deg):
 
 
 
-'''
-
 # Main program
 if __name__ == '__main__':
     
-    right_deg(45)
-    up_deg(42)
-    left_deg(21)
-    down_deg(15)
-
-'''
+    left()
+    right()
+    up()
+    down()
+    zoom_wide()
+    zoom_tele()
+    focus_near()
+    focus_far()
