@@ -15,42 +15,62 @@
 import sys
 import serial
 import time
+import keyboard
 import pelco_p
 #import pelco_d     #Uncomment if you want to use Pelco-D
 
 # Init Function
 def gimbal_init():
+
     print('Initialize the gimbal to the UP-RIGHT position.')
+    print('Initialization takes 40 seconds, please wait...')
+
     ser.write(pelco_p.up())
     time.sleep(20)
+    ser.flush()
+    time.sleep(0.1)
     ser.write(pelco_p.right())
+    time.sleep(20)
+    ser.flush()
+
+    print('Initialization complete!')
+    print('')
+
 
 # Gimbal Modes
 def gimbal_mode1():
 
     print('Selected Mode: Vertical Scan')
-    gimbal_init()
 
     while (True):
         ser.write(pelco_p.down())
-        time.sleep(20)
+        time.sleep(16)
     
         ser.write(pelco_p.up())
-        time.sleep(20)
+        time.sleep(16)
+
     
     
 
 def gimbal_mode2():
     print('Selected Mode: Horizontal Scan')
-    gimbal_init()
+    
+    while (True):
+        ser.write(pelco_p.left())
+        time.sleep(20)
+        ser.flush()
+        ser.write(pelco_p.right())
+        time.sleep(20)
+        ser.flush()
+    
 
 def gimbal_mode3():
     print('Selected Mode: Tracking')
-    gimbal_init()
+    
 
 def gimbal_mode4():
     print('Selected Mode: Idle')
-    gimbal_init()
+    
 
 
 # Gimbal Mode Menu for user selection
@@ -59,6 +79,7 @@ def gimbal_mode_selection_menu():
     input_mode = input()
 
     match input_mode:
+
         case "1":
             gimbal_mode1()
 
@@ -103,5 +124,5 @@ if __name__ == '__main__':
 
     gimbal_init()
 
-    #gimbal_mode_selection_menu() 
+    gimbal_mode_selection_menu() 
     
