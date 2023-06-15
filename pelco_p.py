@@ -31,77 +31,77 @@ import time
 
 
 def stop():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAF, 0x0F)
-    #ser.write(pelco_d_frame)  #Send the command frame over the serial connection
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAF, 0x0F)
+    #ser.write(pelco_p_frame)  #Send the command frame over the serial connection
     #time.sleep(0.1)  # Wait for the command to be sent
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     #print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def down():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
-    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
+    #ser.write(pelco_p_frame)  # Send the command frame over the serial connection
     #time.sleep(0.1)  # Wait for the command to be sent
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     #print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def up():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
-    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
+    #ser.write(pelco_p_frame)  # Send the command frame over the serial connection
     #time.sleep(0.1)  # Wait for the command to be sent
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def left():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
-    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
+    #ser.write(pelco_p_frame)  # Send the command frame over the serial connection
     #time.sleep(0.1)  # Wait for the command to be sent
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def right():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x02, 0x20, 0x00, 0xAF, 0x2D)
-    #ser.write(pelco_d_frame)  # Send the command frame over the serial connection
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x02, 0x20, 0x00, 0xAF, 0x2D)
+    #ser.write(pelco_p_frame)  # Send the command frame over the serial connection
     #time.sleep(0.1)  # Wait for the command to be sent
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def zoom_wide():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x20, 0x00, 0x20, 0xAF, 0x0F)
-    hex_list = [hex(element) for element in pelco_d_frame]
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x20, 0x00, 0x20, 0xAF, 0x0F)
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def zoom_tele():
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x40, 0x00, 0x20, 0xAF, 0x6F)
-    hex_list = [hex(element) for element in pelco_d_frame]
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x40, 0x00, 0x20, 0xAF, 0x6F)
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def focus_near():
-    pelco_d_frame = (0xA0, 0x00, 0x01, 0x00, 0x00, 0x00, 0xAF, 0x0E)
-    hex_list = [hex(element) for element in pelco_d_frame]
+    pelco_p_frame = (0xA0, 0x00, 0x01, 0x00, 0x00, 0x00, 0xAF, 0x0E)
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 def focus_far():
-    pelco_d_frame = (0xA0, 0x00, 0x02, 0x00, 0x00, 0x00, 0xAF, 0x0D)
-    hex_list = [hex(element) for element in pelco_d_frame]
+    pelco_p_frame = (0xA0, 0x00, 0x02, 0x00, 0x00, 0x00, 0xAF, 0x0D)
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     # print(hex_string)
-    return pelco_d_frame
+    return pelco_p_frame
 
 #Degree Functions
 
@@ -110,9 +110,9 @@ def focus_far():
 
 
 def down_deg(deg):
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x10, 0x00, 0x20, 0xAF, 0x3F)
 
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
 
@@ -121,8 +121,8 @@ def down_deg(deg):
     stop()
 
 def up_deg(deg):
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
-    hex_list = [hex(element) for element in pelco_d_frame]
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x08, 0x00, 0x20, 0xAF, 0x27)
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
 
@@ -131,9 +131,9 @@ def up_deg(deg):
     stop()
 
 def left_deg(deg):
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
 
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
 
@@ -143,9 +143,9 @@ def left_deg(deg):
 
 
 def right_deg(deg):
-    pelco_d_frame = (0xA0, 0x00, 0x00, 0x02, 0x20, 0x00, 0xAF, 0x2D)
+    pelco_p_frame = (0xA0, 0x00, 0x00, 0x02, 0x20, 0x00, 0xAF, 0x2D)
     
-    hex_list = [hex(element) for element in pelco_d_frame]
+    hex_list = [hex(element) for element in pelco_p_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
 

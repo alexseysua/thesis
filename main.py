@@ -1,4 +1,4 @@
-###################################################################################################################
+########################################################################################################################################
 #University:             Technical University of Crete
 #School:                 School of Electrical & Computer Engineering
 #Author:                 Manesis Athanasios
@@ -8,9 +8,14 @@
 #Development Tools:      Sublime Text Editor, Geany IDE, TensorFlow
 
 #Additional Comments:     
-'''                         
 '''
-###################################################################################################################
+                        This script controls an embedded gimbal system for land-based tracking of UAVs. It is designed to run on an
+                        edge device, specifically an RPi-4, and communicates with the gimbal over RS485 protocol. The script provides
+                        different modes of operation for the gimbal, including vertical scan, horizontal scan, tracking, and idle.
+                        Please make sure to update the COM port and baud rate in the serial connection setup.                         
+'''
+########################################################################################################################################
+
 
 import sys
 import serial
@@ -53,6 +58,7 @@ def gimbal_mode1():
             time.sleep(16)
 
         except KeyboardInterrupt:     #Ctrl+C interrupt
+            ser.write(pelco_p.stop())
             gimbal_mode_selection_menu()
 
 
@@ -70,6 +76,7 @@ def gimbal_mode2():
             ser.flush()
 
         except KeyboardInterrupt:
+            ser.write(pelco_p.stop())
             gimbal_mode_selection_menu()
             
 
@@ -80,6 +87,8 @@ def gimbal_mode3():
     while (True):
 
         try:
+
+            # TODO: Implement tracking logic
             pass
 
         except KeyboardInterrupt:
@@ -150,7 +159,7 @@ if __name__ == '__main__':
 
     print('Ready to use.')
 
-    #gimbal_init()
+    gimbal_init()
 
     gimbal_mode_selection_menu() 
 
