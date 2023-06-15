@@ -57,6 +57,7 @@ def up():
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def left():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x04, 0x20, 0x00, 0xAF, 0x2B)
@@ -73,6 +74,7 @@ def right():
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def zoom_wide():
     pelco_d_frame = (0xA0, 0x00, 0x00, 0x20, 0x00, 0x20, 0xAF, 0x0F)

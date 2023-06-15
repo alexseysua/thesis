@@ -13,10 +13,16 @@
 ###################################################################################################################
 
 import sys
-#import serial
+import serial
 import time
 import pelco_p
 #import pelco_d     #Uncomment if you want to use Pelco-D
+
+# Init Function
+def gimbal_init():
+    print('Initialize the gimbal to the UP-RIGHT position.')
+    ser.write(pelco_p.up())
+    ser.write(pelco_p.right())
 
 # Gimbal Modes
 def gimbal_mode1():
@@ -60,12 +66,26 @@ def print_menu():
 
 if __name__ == '__main__':
 
-    #init gimbal try, problem with import serial  (import serial ModuleNotFoundError: No module named 'serial')
+    
+    print('Opening port...')
 
-    #ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
+    try:
+        ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
+        print('Port is open.')
+
+    except serial.SerialException:
+        serial.Serial('COM4', 9600).close()
+        print('Port is closed')
+        ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
+        print('Port is open again.')
+
+    print('Ready to use.')
+
+
+    gimbal_init()
 
     gimbal_mode_selection_menu()
-    pelco_p.right()
+    
 
 '''
     # time.sleep(0.1)  # Wait for the command to be sent
