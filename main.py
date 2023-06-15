@@ -38,38 +38,65 @@ def gimbal_init():
 
 
 # Gimbal Modes
+
 def gimbal_mode1():
 
     print('Selected Mode: Vertical Scan')
 
     while (True):
-        ser.write(pelco_p.down())
-        time.sleep(16)
+        
+        try:
+            ser.write(pelco_p.down())
+            time.sleep(16)
     
-        ser.write(pelco_p.up())
-        time.sleep(16)
+            ser.write(pelco_p.up())
+            time.sleep(16)
 
-    
-    
+        except KeyboardInterrupt:     #Ctrl+C interrupt
+            gimbal_mode_selection_menu()
+
 
 def gimbal_mode2():
     print('Selected Mode: Horizontal Scan')
     
     while (True):
-        ser.write(pelco_p.left())
-        time.sleep(20)
-        ser.flush()
-        ser.write(pelco_p.right())
-        time.sleep(20)
-        ser.flush()
-    
+       
+        try:
+            ser.write(pelco_p.left())
+            time.sleep(20)
+            ser.flush()
+            ser.write(pelco_p.right())
+            time.sleep(20)
+            ser.flush()
+
+        except KeyboardInterrupt:
+            gimbal_mode_selection_menu()
+            
 
 def gimbal_mode3():
+        
     print('Selected Mode: Tracking')
-    
+
+    while (True):
+
+        try:
+            pass
+
+        except KeyboardInterrupt:
+            gimbal_mode_selection_menu()
+
 
 def gimbal_mode4():
+        
     print('Selected Mode: Idle')
+
+    while (True):
+
+        try:
+            pass
+
+        except KeyboardInterrupt:
+            gimbal_mode_selection_menu()
     
 
 
@@ -93,7 +120,6 @@ def gimbal_mode_selection_menu():
             gimbal_mode4()
 
 
-
 # Gimbal Menu
 def print_menu():
     print('')
@@ -104,6 +130,8 @@ def print_menu():
     print('4: Idle')
     print('')
 
+
+# Main
 
 if __name__ == '__main__':
 
@@ -117,12 +145,14 @@ if __name__ == '__main__':
     except serial.SerialException:
         serial.Serial('COM4', 9600).close()
         print('Port is closed')
-        ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
-        print('Port is open again.')
+        raise SystemExit
+
 
     print('Ready to use.')
 
-    gimbal_init()
+    #gimbal_init()
 
     gimbal_mode_selection_menu() 
+
+    ser.close();
     

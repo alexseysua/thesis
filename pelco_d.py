@@ -27,8 +27,7 @@ import time
 #The basic Pelco-D frames for pan/tilt and fo+/fo-,zo+/zo-
 
 
-def _delay_us(us):
-    time.sleep(us/1000000.0)
+
 
 def stop():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01)
