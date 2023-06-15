@@ -35,51 +35,63 @@ def stop():
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def down():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x10, 0x00, 0x20, 0x31)
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def up():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x08, 0x00, 0x20, 0x29) 
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def left():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x04, 0x20, 0x00, 0x25)
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def right():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x02, 0x20, 0x00, 0x23)
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
+
 def zoom_wide():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x20, 0x00, 0x00, 0x21) 
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 def zoom_tele():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x40, 0x00, 0x00, 0x41)
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
+
 def focus_near():
     pelco_d_frame = (0xFF, 0x01, 0x00, 0x80, 0x00, 0x00, 0x81)
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
+
 def focus_far():
     pelco_d_frame = (0xFF, 0x01, 0x01, 0x00, 0x00, 0x00, 0x02)
     hex_list = [hex(element) for element in pelco_d_frame]
     hex_string = " ".join(hex_list)
     print(hex_string)
+    return pelco_d_frame
 
 #Degree Functions
 
@@ -95,7 +107,6 @@ def down_deg(deg):
     print(hex_string)
 
     while deg != 0:
-        _delay_us(TILT_DEG_TIME)
         deg -= 1
     stop()
 
@@ -106,7 +117,6 @@ def up_deg(deg):
     print(hex_string)
 
     while deg != 0:
-        _delay_us(TILT_DEG_TIME)
         deg -= 1
     stop()
 
@@ -118,7 +128,6 @@ def left_deg(deg):
     print(hex_string)
 
     while deg != 0:
-        _delay_us(PAN_DEG_TIME)
         deg -= 1
     stop()
 
@@ -131,12 +140,11 @@ def right_deg(deg):
     print(hex_string)
 
     while deg != 0:
-        _delay_us(PAN_DEG_TIME)
         deg -= 1
     stop()
 
 
-
+'''
 # Main program
 if __name__ == '__main__':
     
@@ -148,3 +156,4 @@ if __name__ == '__main__':
     zoom_tele()
     focus_near()
     focus_far()
+'''
