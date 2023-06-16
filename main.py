@@ -22,13 +22,14 @@ import serial
 import time
 import keyboard
 import pelco_p
-#import pelco_d     #Uncomment if you want to use Pelco-D
+#import pelco_d     # Uncomment if you want to use Pelco-D 
+import serial.tools.list_ports
 
 # Init Function
 def gimbal_init():
 
     print('Initialize the gimbal to the UP-RIGHT position.')
-    print('Initialization takes 40 seconds, please wait...')
+    print('Initialization takes 40 seconds, please wait ...')
 
     ser.write(pelco_p.up())
     time.sleep(20)
@@ -111,22 +112,29 @@ def gimbal_mode4():
 
 # Gimbal Mode Menu for user selection
 def gimbal_mode_selection_menu():
-    print_menu()
-    input_mode = input()
+    
 
-    match input_mode:
+    try:
 
-        case "1":
-            gimbal_mode1()
+        print_menu()
+        input_mode = input()
 
-        case "2":
-            gimbal_mode2()
+        match input_mode:
 
-        case "3":
-            gimbal_mode3()
+            case "1":
+                gimbal_mode1()
 
-        case "4":
-            gimbal_mode4()
+            case "2":
+                gimbal_mode2()
+
+            case "3":
+                gimbal_mode3()
+
+            case "4":
+                gimbal_mode4()
+
+    except KeyboardInterrupt:
+        return
 
 
 # Gimbal Menu
@@ -140,16 +148,44 @@ def print_menu():
     print('')
 
 
+def print_com_port_info(port_name):
+    # Get a list of available ports
+    ports = serial.tools.list_ports.comports()
+
+    # Find the desired port
+    port_in_use = None
+    for port in ports:
+        if port.device == port_name:
+            port_in_use = port
+            break
+
+    if port_in_use is None:
+        print(f"COM port {port_name} not found or not in use.")
+    else:
+
+        # Print the port information
+        print(f"Port: {port_in_use.device}")
+        print(f"Description: {port_in_use.description}")
+        print(f"Manufacturer: {port_in_use.manufacturer}")
+        print(f"Hardware ID: {port_in_use.hwid}")
+        print(f"Product ID: {port_in_use.pid}")
+        print(f"Serial Number: {port_in_use.serial_number}")
+        print(f"Location: {port_in_use.location}")
+        print(f"USB VID:PID: {port_in_use.vid:04x}:{port_in_use.pid:04x}\n")
+
+
 # Main
 
 if __name__ == '__main__':
 
     
-    print('Opening port...')
+    print('\nOpening port ... \n')
 
     try:
         ser = serial.Serial('COM4', 9600)  # Replace 'COM4' with the appropriate port and 9600 with the correct baud rate
-        print('Port is open.')
+        print_com_port_info("COM4")
+        print('Port is open, ready to use!\n')
+        
 
     except serial.SerialException:
         serial.Serial('COM4', 9600).close()
@@ -157,11 +193,13 @@ if __name__ == '__main__':
         raise SystemExit
 
 
-    print('Ready to use.')
+
 
     gimbal_init()
 
     gimbal_mode_selection_menu() 
+
+    print('Exit from Menu, port will close')
 
     ser.close();
     
