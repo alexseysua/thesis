@@ -3,9 +3,9 @@
 #School:                 School of Electrical & Computer Engineering
 #Author:                 Manesis Athanasios
 #Thesis:                 Embedded gimbal system for land-based tracking of UAV
+#GitHub Repo:            https://github.com/amanesis/thesis
 #Edge Device:            RPi-4
 #Gimbal:                 AS20-RS485
-#Development Tools:      Sublime Text Editor, Geany IDE, TensorFlow
 
 #Additional Comments:     
 '''
@@ -23,12 +23,40 @@ import time
 import keyboard
 import serial.tools.list_ports
 
-
 #import pelco_d     # Uncomment if you want to use Pelco-D 
 import pelco_p
 
 
- '''
+speed_deg_per_sec = 5  # Gimbal rotation speed in degrees per second
+lookup_table = {}
+
+
+
+def calculate_rotation_time(angle):
+    
+    #Calculates the time needed for the gimbal to rotate to the specified angle based on the lookup table.
+    
+    if angle in lookup_table:
+        return lookup_table[angle]
+    else:
+        return abs(angle / speed_deg_per_sec)
+
+def build_lookup_table():
+    
+    # Builds the lookup table for angle-to-time mapping based on gimbal speed.
+    
+    global lookup_table
+    lookup_table = {}
+    for angle in range(0, 360):
+        time_needed = abs(angle / speed_deg_per_sec)
+        lookup_table[angle] = time_needed
+
+#for main
+# build_lookup_table() 
+# time.sleep(calculate_rotation_time(desired_angle))
+
+
+'''
     Modifying for Pelco-D API:
     If you want to use the Pelco-D API instead of Pelco-P and the function names are the same, you need to make the following changes:
     - Uncomment the import statement for the pelco_d module at the top of the script.
@@ -48,19 +76,24 @@ import pelco_p
 # Init Function
 def gimbal_init():
 
-    print('Initialize the gimbal to the UP-RIGHT position.')
-    print('Initialization takes 40 seconds, please wait ...')
+    try:
+        print('Initialize the gimbal to the UP-RIGHT position.')
+        print('Initialization takes 40 seconds, please wait ...')
 
-    ser.write(pelco_p.up())
-    time.sleep(20)
-    ser.flush()
-    time.sleep(0.1)
-    ser.write(pelco_p.right())
-    time.sleep(20)
-    ser.flush()
+        ser.write(pelco_p.up())
+        time.sleep(20)
+        ser.flush()
+        time.sleep(0.1)
+        ser.write(pelco_p.right())
+        time.sleep(20)
+        ser.flush()
 
-    print('Initialization complete!')
-    print('')
+        print('Initialization complete!')
+        print('')
+
+    except KeyboardInterrupt:
+        ser.write(pelco_p.stop())
+        
 
 
 # Gimbal Modes
@@ -200,26 +233,25 @@ def print_com_port_info(port_name):
 
 if __name__ == '__main__':
 
+    '''
 
- '''
+        Description: This is the main entry point of the script.
 
-    Description: This is the main entry point of the script.
+        Execution:
+        - The script opens the serial port connection to the gimbal.
+        - It prints the information about the COM port being used.
+        - The gimbal is initialized to the UP-RIGHT position.
+        - The user is presented with a gimbal mode selection menu.
+        - Depending on the user's input, the script enters the selected gimbal mode.
+        - If the execution is interrupted by pressing Ctrl+C, the script handles the interruption and returns to the mode selection menu.
+        - When the user exits the mode selection menu, the script closes the serial port connection.
 
-    Execution:
-    - The script opens the serial port connection to the gimbal.
-    - It prints the information about the COM port being used.
-    - The gimbal is initialized to the UP-RIGHT position.
-    - The user is presented with a gimbal mode selection menu.
-    - Depending on the user's input, the script enters the selected gimbal mode.
-    - If the execution is interrupted by pressing Ctrl+C, the script handles the interruption and returns to the mode selection menu.
-    - When the user exits the mode selection menu, the script closes the serial port connection.
+        Modifying the Configuration:
+        - Update the serial port and baud rate in the line where `serial.Serial` is initialized.
+        - Modify the gimbal initialization code in `gimbal_init()` to set the gimbal to the desired initial position.
+        - Adjust the gimbal mode implementations in `gimbal_mode1()`, `gimbal_mode2()`, `gimbal_mode3()`, and `gimbal_mode4()` according to your specific requirements.
 
-    Modifying the Configuration:
-    - Update the serial port and baud rate in the line where `serial.Serial` is initialized.
-    - Modify the gimbal initialization code in `gimbal_init()` to set the gimbal to the desired initial position.
-    - Adjust the gimbal mode implementations in `gimbal_mode1()`, `gimbal_mode2()`, `gimbal_mode3()`, and `gimbal_mode4()` according to your specific requirements.
-
-'''
+    '''
 
     
     print('\nOpening port ... \n')
