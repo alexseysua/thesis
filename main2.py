@@ -1,9 +1,46 @@
+########################################################################################################################################
+#University:             Technical University of Crete
+#School:                 School of Electrical & Computer Engineering
+#Author:                 Manesis Athanasios
+#Thesis:                 Embedded gimbal system for land-based tracking of UAV
+#GitHub Repo:            https://github.com/amanesis/thesis
+#Edge Device:            RPi-4
+#Gimbal:                 AS20-RS485
+
+#Additional Comments:     
+'''
+                        This script controls an embedded gimbal system for land-based tracking of UAVs. It is designed to run on an
+                        edge device, specifically an RPi-4, and communicates with the gimbal over RS485 protocol. The script provides
+                        different modes of operation for the gimbal, including vertical scan, horizontal scan, tracking, and idle.
+                        Please make sure to update the COM port and baud rate in the serial connection setup.                         
+'''
+########################################################################################################################################
+
 import sys
 import serial
 import time
 import threading
 import serial.tools.list_ports
+
+#import pelco_d     # Uncomment if you want to use Pelco-D 
 import pelco_p
+
+'''
+    Modifying for Pelco-D API:
+    If you want to use the Pelco-D API instead of Pelco-P and the function names are the same, you need to make the following changes:
+    - Uncomment the import statement for the pelco_d module at the top of the script.
+    - Replace the function calls and commands from pelco_p with the corresponding ones from pelco_d.
+    - Update the implementation of gimbal mode functions and gimbal init to use the Pelco-D commands and logic.
+
+    Example:
+    - Uncomment the line: import pelco_d
+    - Replace pelco_p.up() with pelco_d.up()
+    - Replace pelco_p.down() with pelco_d.down()
+    - Replace pelco_p.right() with pelco_d.right()
+    - Replace pelco_p.left() with pelco_d.left()
+
+    Note: Ensure that you have the pelco_d module available
+'''
 
 speed_deg_per_sec = 5  # Gimbal rotation speed in degrees per second
 mode = 0  # Initialize mode variable
@@ -112,6 +149,41 @@ def stop_active_thread(active_thread):
 
 # Main control loop
 def gimbal_control_loop(ser):
+
+    """
+    Main control loop for selecting and switching between gimbal modes.
+
+    Args:
+        ser (Serial): Serial connection object.
+
+    Description:
+        This function serves as the main control loop of the program. It allows the user to select and switch between
+        different gimbal modes by inputting the desired mode number. The function continuously prompts the user for mode
+        selection until the user enters 'exit' to quit the program.
+
+        The function takes a serial connection object 'ser' as an argument, which is used to communicate with the gimbal
+        controller.
+
+        The function first initializes the global variables 'mode' and 'active_thread'.
+
+        Inside the main loop, it prompts the user to enter a gimbal mode (1-4) or 'exit'. If the mode is already active,
+        it displays a message and continues to the next iteration.
+
+        When a new mode is selected, the function acquires the 'mode_lock' to synchronize mode changes. It stops the
+        active thread if it is running by calling the 'stop_active_thread' function.
+
+        Based on the selected mode, it creates a new thread using the corresponding gimbal mode function (gimbal_mode1,
+        gimbal_mode2, gimbal_mode3, gimbal_mode4) as the target. The 'daemon' argument is set to True to allow the
+        program to exit even if the thread is still running.
+
+        If an invalid mode is entered, it displays an error message and continues to the next iteration.
+
+        Finally, it starts the newly created thread and continues to the next iteration of the loop.
+
+        If the user enters 'exit', the loop breaks, and the function calls 'stop_active_thread' to ensure the active
+        thread is stopped before exiting the program.
+
+    """
     global mode
     global active_thread
 
