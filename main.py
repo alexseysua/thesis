@@ -51,7 +51,7 @@ def build_lookup_table():
         time_needed = abs(angle / speed_deg_per_sec)
         lookup_table[angle] = time_needed
 
-#for main
+# for main
 # build_lookup_table() 
 # time.sleep(calculate_rotation_time(desired_angle))
 
@@ -232,6 +232,7 @@ def print_com_port_info(port_name):
 ######################################################################
 
 if __name__ == '__main__':
+
 
     '''
 
