@@ -21,9 +21,29 @@ import sys
 import serial
 import time
 import keyboard
-import pelco_p
-#import pelco_d     # Uncomment if you want to use Pelco-D 
 import serial.tools.list_ports
+
+
+#import pelco_d     # Uncomment if you want to use Pelco-D 
+import pelco_p
+
+
+ '''
+    Modifying for Pelco-D API:
+    If you want to use the Pelco-D API instead of Pelco-P and the function names are the same, you need to make the following changes:
+    - Uncomment the import statement for the pelco_d module at the top of the script.
+    - Replace the function calls and commands from pelco_p with the corresponding ones from pelco_d.
+    - Update the implementation of gimbal mode functions and gimbal init to use the Pelco-D commands and logic.
+
+    Example:
+    - Uncomment the line: import pelco_d
+    - Replace pelco_p.up() with pelco_d.up()
+    - Replace pelco_p.down() with pelco_d.down()
+    - Replace pelco_p.right() with pelco_d.right()
+    - Replace pelco_p.left() with pelco_d.left()
+
+    Note: Ensure that you have the pelco_d module available
+'''
 
 # Init Function
 def gimbal_init():
@@ -44,7 +64,6 @@ def gimbal_init():
 
 
 # Gimbal Modes
-
 def gimbal_mode1():
 
     print('Selected Mode: Vertical Scan')
@@ -174,9 +193,33 @@ def print_com_port_info(port_name):
         print(f"USB VID:PID: {port_in_use.vid:04x}:{port_in_use.pid:04x}\n")
 
 
-# Main
+
+######################################################################
+#                             Main                                   
+######################################################################
 
 if __name__ == '__main__':
+
+
+ '''
+
+    Description: This is the main entry point of the script.
+
+    Execution:
+    - The script opens the serial port connection to the gimbal.
+    - It prints the information about the COM port being used.
+    - The gimbal is initialized to the UP-RIGHT position.
+    - The user is presented with a gimbal mode selection menu.
+    - Depending on the user's input, the script enters the selected gimbal mode.
+    - If the execution is interrupted by pressing Ctrl+C, the script handles the interruption and returns to the mode selection menu.
+    - When the user exits the mode selection menu, the script closes the serial port connection.
+
+    Modifying the Configuration:
+    - Update the serial port and baud rate in the line where `serial.Serial` is initialized.
+    - Modify the gimbal initialization code in `gimbal_init()` to set the gimbal to the desired initial position.
+    - Adjust the gimbal mode implementations in `gimbal_mode1()`, `gimbal_mode2()`, `gimbal_mode3()`, and `gimbal_mode4()` according to your specific requirements.
+
+'''
 
     
     print('\nOpening port ... \n')
