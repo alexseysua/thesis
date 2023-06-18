@@ -220,6 +220,7 @@ def gimbal_control_loop(ser):
             active_thread.start()
 
     stop_active_thread(active_thread)
+    sys.exit(1)
 
 if __name__ == '__main__':
     mode = 0  # Initialize mode variable
