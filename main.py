@@ -265,8 +265,7 @@ if __name__ == '__main__':
 
     except serial.SerialException:
         serial.Serial('COM4', 9600).close()
-        print('Port is closed')
-        raise SystemExit
+        raise SystemExit('Unable to connect with Port. System Exit')
 
 
 
@@ -276,6 +275,8 @@ if __name__ == '__main__':
     gimbal_mode_selection_menu() 
 
     print('Exit from Menu, port will close')
+
+
 
     ser.close();
     

@@ -147,6 +147,9 @@ def stop_active_thread(active_thread):
     if active_thread is not None and active_thread.is_alive():
         active_thread.join()
 
+            
+
+
 # Main control loop
 def gimbal_control_loop(ser):
 
@@ -183,6 +186,8 @@ def gimbal_control_loop(ser):
         If the user enters 'exit', the loop breaks, and the function calls 'stop_active_thread' to ensure the active
         thread is stopped before exiting the program.
 
+
+
     """
     global mode
     global active_thread
@@ -207,12 +212,16 @@ def gimbal_control_loop(ser):
 
             if mode == 1:
                 active_thread = threading.Thread(target=gimbal_mode1, args=(ser,), daemon=True)
+
             elif mode == 2:
                 active_thread = threading.Thread(target=gimbal_mode2, args=(ser,), daemon=True)
+                
             elif mode == 3:
                 active_thread = threading.Thread(target=gimbal_mode3, args=(ser,), daemon=True)
+
             elif mode == 4:
                 active_thread = threading.Thread(target=gimbal_mode4, args=(ser,), daemon=True)
+
             else:
                 print("Invalid mode! Please enter a valid mode (1-4) or 'exit'.")
                 continue
@@ -220,7 +229,7 @@ def gimbal_control_loop(ser):
             active_thread.start()
 
     stop_active_thread(active_thread)
-    sys.exit(1)
+
 
 if __name__ == '__main__':
     mode = 0  # Initialize mode variable
@@ -232,11 +241,15 @@ if __name__ == '__main__':
     # Print COM port information
     print_com_port_info(port_name)
 
+
     try:
+
         ser = serial.Serial(port_name, 9600, timeout=1)
-        gimbal_init(ser)
-        gimbal_control_loop(ser)
+        gimbal_init(ser) 
+        gimbal_control_loop(ser) 
         ser.close()
+
     except serial.SerialException as e:
         print(f"Failed to open serial port: {e}")
         sys.exit(1)
+
