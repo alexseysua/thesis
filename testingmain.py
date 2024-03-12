@@ -69,14 +69,8 @@ def detect_drone(image):
     interpreter.invoke()
 
     # Get the output tensor
-    output_data = interpreter.get_tensor(output_details[0]['index'])
-
-    # TODO: Process the output_data to get the bounding box of the detected drone
-    # This will depend on the format of your model's output
-
-    # For demonstration purposes, returning a random bounding box
-    x, y, width, height = 50, 50, 20, 20
-    return x, y, width, height
+   return output_data = interpreter.get_tensor(output_details[0]['index'])
+   
 
 
 speed_deg_per_sec = 5  # Gimbal rotation speed in degrees per second
@@ -157,11 +151,7 @@ def gimbal_mode3(ser):
             center_x = x + width / 2
             center_y = y + height / 2
 
-            # TODO: Implement gimbal tracking logic to keep the drone in the center
-            # You may use pelco_p commands like pelco_p.pan_tilt_absolute(pan_value, tilt_value)
-            # based on the center coordinates and camera resolution
-
-            # Example:
+            
             pan_value = int(center_x / 100 * 255)  # Adjust the factor based on your camera resolution
             tilt_value = int(center_y / 100 * 255)  # Adjust the factor based on your camera resolution
 
